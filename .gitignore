@@ -1,0 +1,19 @@
+# Ignore PHP files if deploying to GitHub Pages
+# api.php
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.bak
+*.log

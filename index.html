@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Pinterest Video Downloader - Download Pinterest videos in high quality. Fast, secure, and easy-to-use tool for saving Pinterest videos to your device.">
+    <meta name="keywords" content="pinterest video downloader, download pinterest videos, save pinterest videos, pinterest video download, free video downloader">
+    <meta name="author" content="Pinterest Video Downloader">
+    <meta property="og:title" content="Pinterest Video Downloader - Download Videos Free">
+    <meta property="og:description" content="Download Pinterest videos quickly and easily. High-quality downloads, no registration required.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    <meta name="google-adsense-account" content="ca-pub-7431808618156384">
+    <meta name="theme-color" content="#8a2be2">
+    <meta property="og:site_name" content="PinDownloader">
+    <meta property="og:locale" content="en_US">
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+    <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+    <link rel="preconnect" href="https://tpc.googlesyndication.com" crossorigin>
+    <link rel="preconnect" href="https://www.pinterest.com">
+    <link rel="preconnect" href="https://api.allorigins.win">
+    <link rel="preconnect" href="https://corsproxy.io">
+    <link rel="preconnect" href="https://i.pinimg.com">
+    <title>Pinterest Video Downloader - Download Videos Free & Fast</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8a2be2;
+            --primary-dark: #6a1bb2;
+            --secondary: #111;
+            --text: #333;
+            --text-light: #666;
+            --bg: #fff;
+            --bg-alt: #f7f7f7;
+            --border: #ddd;
+            --success: #28a745;
+            --error: #dc3545;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg-alt);
+        }
+
+        /* Visually hidden, accessible to screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 1px, 1px);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg);
+            box-shadow: 0 2px 10px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Container */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Download Section */
+        .download-section {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 4px 20px var(--shadow);
+            margin-bottom: 3rem;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        input[type="url"] {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        input[type="url"]:focus {
+            border-color: var(--primary);
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+        }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-download {
+            background: var(--success);
+            color: white;
+            width: 100%;
+        }
+
+        .btn-download:hover {
+            background: #218838;
+        }
+
+        /* Alert Messages */
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+            display: none;
+        }
+
+        .spinner.show {
+            display: block;
+        }
+
+        /* Video Preview */
+        .video-preview {
+            display: none;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .video-preview.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .video-preview video {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--shadow);
+            margin-bottom: 1.5rem;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            min-height: 180px;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: var(--bg);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+        }
+
+        /* How to Use Section */
+        .how-to-use {
+            background: var(--bg);
+            padding: 3rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+        }
+
+        .how-to-use h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+        }
+
+        .steps {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .step-content p {
+            color: var(--text-light);
+        }
+
+        /* Ad Placements */
+        .ad-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .ad-banner h3 {
+            margin-bottom: 1rem;
+        }
+
+        .ad-sidebar {
+            background: var(--bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        /* Floating Ad Space */
+        .floating-ad {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            padding: 1.5rem;
+            z-index: 999;
+            animation: slideUp 0.5s ease;
+            transition: transform 0.3s ease;
+        }
+
+        .floating-ad:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .floating-ad-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .floating-ad-close:hover {
+            background: var(--bg-alt);
+            color: var(--text);
+        }
+
+        .floating-ad-content {
+            margin-top: 0.5rem;
+        }
+
+        .floating-ad h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .floating-ad p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .floating-ad .btn {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .floating-ad.hidden {
+            display: none;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: var(--bg);
+            padding: 3rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+        }
+
+        .faq h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .faq-answer {
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+
+            .download-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .how-to-use, .faq {
+                padding: 2rem 1.5rem;
+            }
+
+            .floating-ad {
+                width: calc(100% - 40px);
+                left: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .floating-ad {
+                bottom: 10px;
+                width: calc(100% - 20px);
+                left: 10px;
+                right: 10px;
+            }
+        }
+        /* Countdown */
+        .countdown {
+            display: none;
+            margin: 0 auto 1rem;
+            padding: 0.5rem 1rem;
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+            border-radius: 8px;
+            max-width: 320px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .countdown.show {
+            display: block;
+        }
+    </style>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7431808618156384" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="./" class="logo">📌 PinDownloader</a>
+            <ul class="nav-links">
+                <li><a href="#download">Download</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-to">How To Use</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Floating Ad Space -->
+    <aside id="floatingAd" class="floating-ad">
+        <button class="floating-ad-close" aria-label="Close ad" onclick="closeFloatingAd()">×</button>
+        <div class="floating-ad-content">
+            <h4>🚀 Boost Your Downloads</h4>
+            <p>Get premium features with our partner's advanced video toolkit. Fast, reliable, and feature-rich!</p>
+            <a href="#premium" class="btn btn-primary">Upgrade Now</a>
+        </div>
+    </aside>
+
+    <section class="hero">
+        <h1>Pinterest Video Downloader</h1>
+        <p>Download Pinterest videos in high quality - Free, fast, and secure. No registration required.</p>
+    </section>
+
+    <main>
+        <section id="download" class="download-section">
+            <h2 style="margin-bottom: 1.5rem; text-align: center;">Download Your Pinterest Video</h2>
+            
+            <div id="alertContainer"></div>
+
+            <div class="input-group">
+                <div class="input-wrapper">
+                    <label for="videoUrl" class="sr-only">Pinterest video URL</label>
+                    <input 
+                        type="url" 
+                        id="videoUrl" 
+                        placeholder="Paste Pinterest video URL here (e.g., https://www.pinterest.com/pin/123456789/)"
+                        aria-label="Pinterest video URL"
+                    >
+                </div>
+                <button id="downloadBtn" class="btn btn-primary">Download</button>
+            </div>
+
+            <div class="spinner" id="spinner"></div>
+            <div id="progressCountdown" class="countdown" aria-live="polite"></div>
+            
+            <div id="videoPreview" class="video-preview">
+                <video id="videoPlayer" controls preload="metadata" playsinline></video>
+                <button id="saveBtn" class="btn btn-download">Save Video</button>
+            </div>
+        </section>
+
+        <!-- AdSense Responsive Banner -->
+        <aside class="ad-banner">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7431808618156384"
+                 data-ad-slot="0000000000"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </aside>
+
+        <section id="features" class="features">
+            <article class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Download Pinterest videos in seconds with our optimized technology</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>100% Secure</h3>
+                <p>Your privacy matters. We don't store any of your data or video links</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>All Devices</h3>
+                <p>Works perfectly on desktop, tablet, and mobile devices</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">🎥</div>
+                <h3>High Quality</h3>
+                <p>Download videos in the best available quality</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">💯</div>
+                <h3>Free Forever</h3>
+                <p>No hidden fees, no premium plans - completely free to use</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>No Limits</h3>
+                <p>Download as many videos as you want, no restrictions</p>
+            </article>
+        </section>
+
+        <section id="how-to" class="how-to-use">
+            <h2>How to Download Pinterest Videos</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Find Your Video</h3>
+                        <p>Open Pinterest and find the video you want to download. Click the share button and copy the video link.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Paste the URL</h3>
+                        <p>Paste the Pinterest video URL into the input field above and click the "Download" button.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Save Your Video</h3>
+                        <p>Preview the video and click "Save Video" to download it to your device instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sidebar Ad Placement -->
+        <aside class="ad-sidebar">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7431808618156384"
+                 data-ad-slot="0000000001"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </aside>
+
+        <section id="faq" class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <article class="faq-item">
+                <h3 class="faq-question">Is this Pinterest video downloader free?</h3>
+                <p class="faq-answer">Yes! Our Pinterest video downloader is completely free to use with no hidden charges or premium features.</p>
+            </article>
+            <article class="faq-item">
+                <h3 class="faq-question">Do I need to create an account?</h3>
+                <p class="faq-answer">No account needed! Simply paste the Pinterest video URL and start downloading immediately.</p>
+            </article>
+            <article class="faq-item">
+                <h3 class="faq-question">What video quality can I download?</h3>
+                <p class="faq-answer">We provide the highest quality available from Pinterest, ensuring you get the best viewing experience.</p>
+            </article>
+            <article class="faq-item">
+                <h3 class="faq-question">Is it safe to use this downloader?</h3>
+                <p class="faq-answer">Absolutely! We prioritize your security and privacy. We don't store any personal data or video information.</p>
+            </article>
+            <article class="faq-item">
+                <h3 class="faq-question">Can I download videos on mobile?</h3>
+                <p class="faq-answer">Yes! Our downloader works perfectly on all devices including smartphones, tablets, and computers.</p>
+            </article>
+            <article class="faq-item">
+                <h3 class="faq-question">How many videos can I download?</h3>
+                <p class="faq-answer">There are no limits! Download as many Pinterest videos as you want, anytime.</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p style="color: rgba(255, 255, 255, 0.8);">We provide the best free Pinterest video downloading service, helping millions save their favorite content.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#download">Download</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-to">How To Use</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Service</a></li>
+                    <li><a href="#disclaimer">Disclaimer</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#help">Help Center</a></li>
+                    <li><a href="#report">Report Issue</a></li>
+                    <li><a href="#feedback">Send Feedback</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Pinterest Video Downloader. All rights reserved. Not affiliated with Pinterest, Inc.</p>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const videoUrlInput = document.getElementById('videoUrl');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const spinner = document.getElementById('spinner');
+        const videoPreview = document.getElementById('videoPreview');
+        const videoPlayer = document.getElementById('videoPlayer');
+        const saveBtn = document.getElementById('saveBtn');
+        const alertContainer = document.getElementById('alertContainer');
+        const progressCountdownEl = document.getElementById('progressCountdown');
+
+        // State management (in-memory only)
+        let currentVideoData = null;
+        const PROGRESS_COUNTDOWN_SECONDS = 10; // countdown cycles during loading
+        let progressCountdownInterval = null;
+
+        // Utility Functions
+        function showAlert(message, type = 'info') {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} show`;
+            alert.textContent = message;
+            alert.setAttribute('role', 'alert');
+            
+            alertContainer.innerHTML = '';
+            alertContainer.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.classList.remove('show');
+                setTimeout(() => alert.remove(), 300);
+            }, 5000);
+        }
+
+        function sanitizeInput(input) {
+            const div = document.createElement('div');
+            div.textContent = input;
+            return div.innerHTML;
+        }
+
+        function validatePinterestUrl(url) {
+            try {
+                const urlObj = new URL(url);
+                const validDomains = ['pinterest.com', 'pin.it', 'www.pinterest.com'];
+                return validDomains.some(domain => urlObj.hostname.includes(domain));
+            } catch {
+                return false;
+            }
+        }
+
+        function showLoading(show) {
+            spinner.classList.toggle('show', show);
+            downloadBtn.disabled = show;
+            if (show) {
+                videoPreview.classList.remove('show');
+            }
+        }
+
+        // Progress countdown helpers
+        function stopProgressCountdown() {
+            if (progressCountdownInterval) {
+                clearInterval(progressCountdownInterval);
+                progressCountdownInterval = null;
+            }
+            if (progressCountdownEl) {
+                progressCountdownEl.classList.remove('show');
+                progressCountdownEl.textContent = '';
+            }
+        }
+
+        function startProgressCountdown(seconds = PROGRESS_COUNTDOWN_SECONDS) {
+            stopProgressCountdown();
+            if (!progressCountdownEl) return;
+            let remaining = seconds;
+            const update = () => {
+                progressCountdownEl.textContent = `Processing... please wait ${remaining}s`;
+            };
+            progressCountdownEl.classList.add('show');
+            update();
+            progressCountdownInterval = setInterval(() => {
+                remaining -= 1;
+                if (remaining <= 0) remaining = seconds; // loop
+                update();
+            }, 1000);
+        }
+
+        // Pinterest Video Extraction with multiple fallback methods
+        async function extractVideoFromPinterest(url) {
+            showLoading(true);
+            
+            try {
+                console.log('Starting extraction for URL:', url);
+                
+                // Extract pin ID from various URL formats
+                let pinId = null;
+                
+                // Handle different URL formats
+                if (url.includes('pin.it/')) {
+                    console.log('Detected short URL format');
+                    const shortCode = url.split('pin.it/')[1].split(/[/?]/)[0];
+                    console.log('Short code:', shortCode);
+                    
+                    showAlert('Please use the full Pinterest URL (https://www.pinterest.com/pin/...) for best results', 'info');
+                    return {
+                        success: false,
+                        error: 'Please copy the full Pinterest URL. On Pinterest, click Share → Copy Link to get the full URL.'
+                    };
+                } else if (url.match(/pinterest\.com\/pin\/([\d]+)/)) {
+                    pinId = url.match(/pinterest\.com\/pin\/([\d]+)/)[1];
+                    console.log('Extracted pin ID:', pinId);
+                } else {
+                    throw new Error('Invalid Pinterest URL format. Please use a URL like: https://www.pinterest.com/pin/123456789/');
+                }
+                
+                if (!pinId) {
+                    throw new Error('Could not extract pin ID from URL');
+                }
+                
+                // Method 0: Try PHP backend (if available)
+                console.log('Attempting PHP backend method...');
+                try {
+                    const backendResponse = await fetch('api.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'url=' + encodeURIComponent(url)
+                    });
+                    
+                    if (backendResponse.ok) {
+                        const result = await backendResponse.json();
+                        if (result.success) {
+                            console.log('PHP backend succeeded');
+                            return result;
+                        }
+                        console.log('PHP backend returned no video:', result.error);
+                    }
+                } catch (backendError) {
+                    console.log('PHP backend not available or failed:', backendError);
+                }
+                
+                // Method 1: Try using a third-party Pinterest downloader API
+                console.log('Attempting third-party API method...');
+                try {
+                    const apiUrl = `https://www.pinterest.com/resource/PinResource/get/?source_url=/pin/${pinId}/&data={"options":{"field_set_key":"unauth_react_main_pin","id":"${pinId}"},"context":{}}`;
+                    const corsProxy = 'https://api.allorigins.win/get?url=';
+                    const response = await fetch(corsProxy + encodeURIComponent(apiUrl), {
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        const content = JSON.parse(data.contents);
+                        console.log('API response received');
+                        
+                        if (content?.resource_response?.data) {
+                            const pinData = content.resource_response.data;
+                            
+                            // Check for video in videos_v2 structure
+                            if (pinData.videos_v2?.video_list) {
+                                const videos = pinData.videos_v2.video_list;
+                                const qualities = ['V_720P', 'V_HLSV4', 'V_HLSV3_MOBILE', 'V_ORIGINAL'];
+                                
+                                for (const quality of qualities) {
+                                    if (videos[quality]?.url) {
+                                        console.log('Found video with quality:', quality);
+                                        return {
+                                            success: true,
+                                            videoUrl: videos[quality].url,
+                                            title: pinData.title || pinData.grid_title || 'Pinterest Video',
+                                            thumbnail: pinData.images?.orig?.url
+                                        };
+                                    }
+                                }
+                            }
+                            
+                            // Check for video in story_pin_data
+                            if (pinData.story_pin_data?.pages) {
+                                for (const page of pinData.story_pin_data.pages) {
+                                    if (page.blocks) {
+                                        for (const block of page.blocks) {
+                                            if (block.video?.video_list) {
+                                                const videos = block.video.video_list;
+                                                const qualities = ['V_720P', 'V_HLSV4', 'V_HLSV3_MOBILE'];
+                                                
+                                                for (const quality of qualities) {
+                                                    if (videos[quality]?.url) {
+                                                        return {
+                                                            success: true,
+                                                            videoUrl: videos[quality].url,
+                                                            title: pinData.title || 'Pinterest Video',
+                                                            thumbnail: pinData.images?.orig?.url
+                                                        };
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } catch (apiError) {
+                    console.error('API method failed:', apiError);
+                }
+                
+                // Method 2: Try fetching via CORS proxy and parse HTML
+                console.log('Attempting HTML parsing method...');
+                try {
+                    const pinPageUrl = `https://www.pinterest.com/pin/${pinId}/`;
+                    const corsProxies = [
+                        'https://api.allorigins.win/raw?url=',
+                        'https://corsproxy.io/?'
+                    ];
+                    
+                    for (const proxy of corsProxies) {
+                        try {
+                            const pageResponse = await fetch(proxy + encodeURIComponent(pinPageUrl), {
+                                headers: {
+                                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                                }
+                            });
+                            
+                            if (!pageResponse.ok) continue;
+                            
+                            const pageHtml = await pageResponse.text();
+                            console.log('Page HTML fetched, length:', pageHtml.length);
+                            
+                            // Look for video URLs in various formats
+                            const patterns = [
+                                /"video_list":\{[^}]*"url":"([^"]+)"/g,
+                                /"V_720P":\{[^}]*"url":"([^"]+)"/g,
+                                /"videos_v2"[^}]*"url":"([^"]+)"/g,
+                                /https?:[^"\s]+pinimg\.com[^"\s]+\.mp4/g
+                            ];
+                            
+                            for (const pattern of patterns) {
+                                const matches = [...pageHtml.matchAll(pattern)];
+                                if (matches.length > 0) {
+                                    let videoUrl = matches[0][1] || matches[0][0];
+                                    videoUrl = videoUrl.replace(/\\\\/g, '/').replace(/\\u002F/g, '/');
+                                    
+                                    if  (videoUrl.includes('.mp4')) {
+                                        console.log('Found video URL:', videoUrl);
+                                        return {
+                                            success: true,
+                                            videoUrl: videoUrl,
+                                            title: 'Pinterest Video',
+                                            thumbnail: null
+                                        };
+                                    }
+                                }
+                            }
+                        } catch (proxyError) {
+                            console.error(`Proxy ${proxy} failed:`, proxyError);
+                            continue;
+                        }
+                    }
+                } catch (htmlError) {
+                    console.error('HTML parsing method failed:', htmlError);
+                }
+                
+                // All methods failed
+                console.error('All extraction methods failed');
+                return {
+                    success: false,
+                    error: 'Unable to extract video from this Pinterest URL.\n\nThis usually happens because:\n• The pin doesn\'t contain a video\n• Pinterest\'s security blocked the request\n• CORS restrictions\n\nTo download this video:\n1. Open the Pinterest pin in your browser\n2. Right-click on the video\n3. Select "Save video as..." or use browser dev tools (F12)'
+                };
+                
+            } catch (error) {
+                console.error('Extraction error:', error);
+                return {
+                    success: false,
+                    error: error.message || 'Failed to extract video. Please check the URL and try again.'
+                };
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Download Handler
+        async function handleDownload() {
+            const url = videoUrlInput.value.trim();
+            
+            // Validation
+            if (!url) {
+                showAlert('Please enter a Pinterest video URL', 'error');
+                videoUrlInput.focus();
+                return;
+            }
+
+            if (!validatePinterestUrl(url)) {
+                showAlert('Please enter a valid Pinterest URL (e.g., https://pin.it/... or https://pinterest.com/...)', 'error');
+                return;
+            }
+
+            // Prepare URL and start progress countdown
+            const rawUrl = url.replace(/&amp;/g, '&');
+            startProgressCountdown(PROGRESS_COUNTDOWN_SECONDS);
+            
+            // Extract video
+            const result = await extractVideoFromPinterest(rawUrl);
+            stopProgressCountdown();
+            
+            if (result.success) {
+                currentVideoData = result;
+                videoPlayer.src = result.videoUrl;
+                videoPreview.classList.add('show');
+                showAlert('Video loaded successfully! Click "Save Video" to download.', 'success');
+                
+                // Scroll to preview
+                videoPreview.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                showAlert(result.error || 'Failed to download video. Please check the URL and try again.', 'error');
+            }
+        }
+
+        // Save Video to Device
+        function handleSave() {
+            if (!currentVideoData) {
+                showAlert('No video loaded', 'error');
+                return;
+            }
+
+            try {
+                // Method 1: Try direct download
+                const a = document.createElement('a');
+                a.href = currentVideoData.videoUrl;
+                a.download = (currentVideoData.title || 'pinterest-video').replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.mp4';
+                a.target = '_blank';
+                a.rel = 'noopener';
+                a.style.display = 'none';
+                
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                
+                showAlert('Download started! If it doesn\'t work, right-click the video and select "Save video as..."', 'success');
+            } catch (error) {
+                console.error('Download error:', error);
+                
+                // Method 2: Open in new tab as fallback
+                const newWin = window.open(currentVideoData.videoUrl, '_blank');
+                if (newWin) newWin.opener = null;
+                showAlert('Video opened in new tab. Right-click and select "Save video as..." to download.', 'info');
+            }
+        }
+
+        // Event Listeners
+        downloadBtn.addEventListener('click', handleDownload);
+        saveBtn.addEventListener('click', handleSave);
+
+        // Enter key support
+        videoUrlInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleDownload();
+            }
+        });
+
+        // Clear preview when input changes
+        videoUrlInput.addEventListener('input', () => {
+            if (videoPreview.classList.contains('show')) {
+                videoPreview.classList.remove('show');
+                currentVideoData = null;
+            }
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Performance optimization: Lazy load videos
+        if ('IntersectionObserver' in window) {
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const video = entry.target;
+                        if (video.dataset.src) {
+                            video.src = video.dataset.src;
+                            delete video.dataset.src;
+                        }
+                    }
+                });
+            });
+
+            document.querySelectorAll('video[data-src]').forEach(video => {
+                videoObserver.observe(video);
+            });
+        }
+
+        // Analytics tracking (privacy-friendly)
+        function trackEvent(eventName, eventData = {}) {
+            // Implement privacy-friendly analytics here
+            // Example: send to your analytics service
+            console.log('Event:', eventName, eventData);
+        }
+
+        // Track page view
+        trackEvent('page_view', { page: 'home' });
+
+        // Track downloads
+        downloadBtn.addEventListener('click', () => {
+            trackEvent('download_attempt');
+        });
+
+        saveBtn.addEventListener('click', () => {
+            trackEvent('video_save');
+        });
+
+        // Floating Ad Management
+        function closeFloatingAd() {
+            const floatingAd = document.getElementById('floatingAd');
+            floatingAd.classList.add('hidden');
+            trackEvent('floating_ad_closed');
+        }
+
+        // Show floating ad after delay
+        setTimeout(() => {
+            const floatingAd = document.getElementById('floatingAd');
+            if (floatingAd && !floatingAd.classList.contains('hidden')) {
+                trackEvent('floating_ad_shown');
+            }
+        }, 5000);
+
+        // Auto-hide floating ad after 30 seconds if not interacted with
+        setTimeout(() => {
+            const floatingAd = document.getElementById('floatingAd');
+            if (floatingAd && !floatingAd.classList.contains('hidden')) {
+                floatingAd.style.opacity = '0.7';
+            }
+        }, 30000);
+    </script>
+</body>
+</html>
