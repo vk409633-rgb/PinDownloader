@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Ensure verification and ads files are crawlable
+Allow: /google9320528739d88c4c.html
+Allow: /ads.txt
+
+# Optional: add your sitemap URL when available
+# Sitemap: https://YOUR_DOMAIN/sitemap.xml
